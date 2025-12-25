@@ -1,0 +1,32 @@
+[0.747s] Invoking command in '/home/youssef/ros2_ws/src/uav_adaptive_control': PYTHONPATH=/home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/prefix_override:/home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/uav_adaptive_control build --build-base /home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/build install --record /home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/install.log --single-version-externally-managed install_data
+[1.015s] running egg_info
+[1.016s] writing build/uav_adaptive_control/uav_adaptive_control.egg-info/PKG-INFO
+[1.017s] writing dependency_links to build/uav_adaptive_control/uav_adaptive_control.egg-info/dependency_links.txt
+[1.017s] writing entry points to build/uav_adaptive_control/uav_adaptive_control.egg-info/entry_points.txt
+[1.017s] writing requirements to build/uav_adaptive_control/uav_adaptive_control.egg-info/requires.txt
+[1.018s] writing top-level names to build/uav_adaptive_control/uav_adaptive_control.egg-info/top_level.txt
+[1.019s] reading manifest file 'build/uav_adaptive_control/uav_adaptive_control.egg-info/SOURCES.txt'
+[1.020s] writing manifest file 'build/uav_adaptive_control/uav_adaptive_control.egg-info/SOURCES.txt'
+[1.021s] running build
+[1.021s] running build_py
+[1.021s] copying uav_adaptive_control/trajectory_publisher.py -> /home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/build/lib/uav_adaptive_control
+[1.021s] copying uav_adaptive_control/oiac_controller.py -> /home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/build/lib/uav_adaptive_control
+[1.021s] copying uav_adaptive_control/px4_bridge.py -> /home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/build/lib/uav_adaptive_control
+[1.021s] running install
+[1.022s] running install_lib
+[1.024s] copying /home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/build/lib/uav_adaptive_control/trajectory_publisher.py -> /home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/python3.10/site-packages/uav_adaptive_control
+[1.024s] copying /home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/build/lib/uav_adaptive_control/oiac_controller.py -> /home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/python3.10/site-packages/uav_adaptive_control
+[1.025s] copying /home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/build/lib/uav_adaptive_control/px4_bridge.py -> /home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/python3.10/site-packages/uav_adaptive_control
+[1.025s] byte-compiling /home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/python3.10/site-packages/uav_adaptive_control/trajectory_publisher.py to trajectory_publisher.cpython-310.pyc
+[1.026s] byte-compiling /home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/python3.10/site-packages/uav_adaptive_control/oiac_controller.py to oiac_controller.cpython-310.pyc
+[1.027s] byte-compiling /home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/python3.10/site-packages/uav_adaptive_control/px4_bridge.py to px4_bridge.cpython-310.pyc
+[1.028s] running install_data
+[1.028s] running install_egg_info
+[1.031s] removing '/home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/python3.10/site-packages/uav_adaptive_control-0.0.0-py3.10.egg-info' (and everything under it)
+[1.031s] Copying build/uav_adaptive_control/uav_adaptive_control.egg-info to /home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/python3.10/site-packages/uav_adaptive_control-0.0.0-py3.10.egg-info
+[1.032s] running install_scripts
+[1.057s] Installing oiac_controller script to /home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/uav_adaptive_control
+[1.058s] Installing px4_bridge script to /home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/uav_adaptive_control
+[1.058s] Installing trajectory_publisher script to /home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/uav_adaptive_control
+[1.058s] writing list of installed files to '/home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/install.log'
+[1.085s] Invoked command in '/home/youssef/ros2_ws/src/uav_adaptive_control' returned '0': PYTHONPATH=/home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/prefix_override:/home/youssef/ros2_ws/src/uav_adaptive_control/install/uav_adaptive_control/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/uav_adaptive_control build --build-base /home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/build install --record /home/youssef/ros2_ws/src/uav_adaptive_control/build/uav_adaptive_control/install.log --single-version-externally-managed install_data
