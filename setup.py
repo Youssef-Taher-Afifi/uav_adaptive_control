@@ -11,6 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/uav_adaptive_control/launch', ['launch/oiac.launch.py']),
+        ('share/uav_adaptive_control/gazebo/QuadcopterTeleop', ['gazebo/QuadcopterTeleop/world.sdf']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

@@ -173,6 +173,15 @@
       </plugin>
 
       <plugin
+        filename="ignition-gazebo-odometry-publisher-system"
+        name="ignition::gazebo::systems::OdometryPublisher">
+        <dimensions>3</dimensions>
+        <odom_publish_frequency>50</odom_publish_frequency>
+        <odom_frame>X3/odom</odom_frame>
+        <robot_base_frame>X3/base_link</robot_base_frame>
+      </plugin>
+
+      <plugin
         filename="ignition-gazebo-multicopter-motor-model-system"
         name="ignition::gazebo::systems::MulticopterMotorModel">
         <robotNamespace>X3</robotNamespace>

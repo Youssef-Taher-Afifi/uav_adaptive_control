@@ -2,6 +2,7 @@
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import PoseStamped, TwistStamped, Twist, Point, Vector3
+from nav_msgs.msg import Odometry
 import numpy as np
 
 class OIAC(Node):
@@ -20,7 +21,9 @@ class OIAC(Node):
         self.b = 2.5
 
         # publishers / subscribers
-        self.cmd_pub = self.create_publisher(Twist, "/cmd_acc", 10)
+        # self.cmd_pub = self.create_publisher(Twist, "/cmd_acc", 10)
+        self.cmd_pub = self.create_publisher(Twist, "/X3/cmd_vel", 10)
+        self.create_subscription(Odometry, "/model/X3/odometry", self.state_odometry, 10)
         self.create_subscription(Point, "/quad/pose", self.state_pose, 10)
         self.create_subscription(Vector3, "/quad/velocity", self.state_vel, 10)
         self.create_subscription(PoseStamped, "/reference_pose", self.ref_pose, 10)
@@ -28,6 +31,14 @@ class OIAC(Node):
 
         self.dt = 0.01
         self.timer = self.create_timer(self.dt, self.update)
+
+    def state_odometry(self, msg):
+        self.p = np.array([msg.pose.pose.position.x,
+                           msg.pose.pose.position.y,
+                           msg.pose.pose.position.z])
+        self.v = np.array([msg.twist.twist.linear.x,
+                           msg.twist.twist.linear.y,
+                           msg.twist.twist.linear.z])
 
     def state_pose(self, msg):
         self.p = np.array([msg.x, msg.y, msg.z])
