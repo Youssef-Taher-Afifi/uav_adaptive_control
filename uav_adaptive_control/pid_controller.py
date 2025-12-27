@@ -23,7 +23,7 @@ class PIDController(Node):
 
         # 1. Declare Parameters (PID gains)
         self.declare_parameter('kp', 2.5)
-        self.declare_parameter('ki', 0.15)
+        self.declare_parameter('ki', 0.0)
         self.declare_parameter('kd', 1.8)
 
         # 2. Read initial values into class variables
