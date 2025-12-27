@@ -11,6 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/uav_adaptive_control/launch', ['launch/oiac.launch.py']),
+        ('share/uav_adaptive_control/launch', ['launch/pid.launch.py']),
         ('share/uav_adaptive_control/gazebo/QuadcopterTeleop', ['gazebo/QuadcopterTeleop/world.sdf']),
         ('share/uav_adaptive_control/rviz', ['rviz/rviz_config.rviz']),
         ('share/uav_adaptive_control/config', ['config/oiac_plot.perspective']),
@@ -26,6 +27,7 @@ setup(
         'console_scripts': [
             'trajectory_publisher = uav_adaptive_control.trajectory_publisher:main',
             'oiac_controller = uav_adaptive_control.oiac_controller:main',
+            'pid_controller = uav_adaptive_control.pid_controller:main',
             'px4_bridge = uav_adaptive_control.px4_bridge:main',    
         ],
     },

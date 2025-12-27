@@ -59,11 +59,11 @@ def generate_launch_description():
         executable="trajectory_publisher", 
         name="trajectory_publisher"
     )
-    
-    oiac_controller = Node(
+
+    pid_controller = Node(
         package="uav_adaptive_control", 
-        executable="oiac_controller", 
-        name="oiac_controller"
+        executable="pid_controller", 
+        name="pid_controller"
     )
     
     px4_bridge = Node(
@@ -94,7 +94,7 @@ def generate_launch_description():
         gz_sim,
         bridge,
         trajectory_publisher,
-        oiac_controller,
+        pid_controller,
         px4_bridge,
         rviz_node,
         rqt_node
