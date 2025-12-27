@@ -11,16 +11,21 @@ def generate_launch_description():
     pkg_ros_gz_sim = get_package_share_directory('ros_gz_sim')
 
     # 2. Define path to the specific world file
-    # Matches path: uav_adaptive_control/gazebo/QuadcopterTeleop/world.sdf
     world_file_path = os.path.join(
         pkg_uav_adaptive_control,
         'gazebo',
         'QuadcopterTeleop',
         'world.sdf'
     )
+    
+    # 3. Define path to RViz config file (NEW)
+    rviz_config_path = os.path.join(
+        pkg_uav_adaptive_control,
+        'rviz',
+        'rviz_config.rviz'
+    )
 
-    # 3. Launch Ignition Gazebo (ros_gz_sim)
-    # The '-r' flag runs the simulation immediately upon loading
+    # 4. Launch Ignition Gazebo (ros_gz_sim)
     gz_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')
@@ -28,8 +33,7 @@ def generate_launch_description():
         launch_arguments={'gz_args': f'-r {world_file_path}'}.items(),
     )
 
-    # 4. Bridge ROS 2 and Ignition Gazebo
-    # Bridges the topics we set up in the SDF (Odometry and Command Velocity)
+    # 5. Bridge ROS 2 and Ignition Gazebo
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
@@ -43,7 +47,7 @@ def generate_launch_description():
         output='screen'
     )
 
-    # 5. Define Existing Nodes
+    # 6. Define Existing Nodes
     trajectory_publisher = Node(
         package="uav_adaptive_control", 
         executable="trajectory_publisher", 
@@ -62,10 +66,20 @@ def generate_launch_description():
         name="px4_bridge"
     )
 
+    # 7. RViz Node
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', rviz_config_path],
+        output='screen'
+    )
+
     return LaunchDescription([
         gz_sim,
         bridge,
         trajectory_publisher,
         oiac_controller,
-        px4_bridge
+        px4_bridge,
+        rviz_node
     ])
