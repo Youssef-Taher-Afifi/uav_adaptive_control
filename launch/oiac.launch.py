@@ -25,7 +25,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')
         ),
-        launch_arguments={'gz_args': f'-r {world_file_path}'}.items(),
+        launch_arguments={'gz_args': f'{world_file_path}'}.items(),
     )
 
     # 4. Bridge ROS 2 and Ignition Gazebo
@@ -37,8 +37,10 @@ def generate_launch_description():
             # Bridge Odometry: Ignition (Point/Vector3 data) -> ROS 2
             '/model/X3/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry',
             
+            # Bridge Motor Commands (ROS -> Ignition)
+            '/X3/command/motor_speed@actuator_msgs/msg/Actuators@ignition.msgs.Actuators',
             # Bridge Control: ROS 2 (Twist) -> Ignition
-            '/X3/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
+            # '/X3/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist',
         ],
         output='screen'
     )
@@ -55,17 +57,24 @@ def generate_launch_description():
         executable="oiac_controller", 
         name="oiac_controller"
     )
-    
-    px4_bridge = Node(
+
+    mixer_node = Node(
         package="uav_adaptive_control", 
-        executable="px4_bridge", 
-        name="px4_bridge"
+        executable="mixer", 
+        name="quad_mixer"
     )
+    
+    # px4_bridge = Node(
+    #     package="uav_adaptive_control", 
+    #     executable="px4_bridge", 
+    #     name="px4_bridge"
+    # )
 
     return LaunchDescription([
         gz_sim,
         bridge,
         trajectory_publisher,
         oiac_controller,
-        px4_bridge
+        mixer_node
+        # px4_bridge
     ])

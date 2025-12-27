@@ -24,6 +24,7 @@ setup(
         'console_scripts': [
             'trajectory_publisher = uav_adaptive_control.trajectory_publisher:main',
             'oiac_controller = uav_adaptive_control.oiac_controller:main',
+            'mixer = uav_adaptive_control.mixer:main',
             'px4_bridge = uav_adaptive_control.px4_bridge:main',    
         ],
     },

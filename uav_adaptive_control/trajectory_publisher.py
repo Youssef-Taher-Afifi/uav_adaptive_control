@@ -9,13 +9,13 @@ class TrajectoryPublisher(Node):
         super().__init__("trajectory_publisher")
         self.pose_pub = self.create_publisher(PoseStamped, "/reference_pose", 10)
         self.twist_pub = self.create_publisher(TwistStamped, "/reference_twist", 10)
-        self.t = 0.0
+        self.t = 1.0
         self.Tf = 20.0
         self.dt = 0.01
         self.timer = self.create_timer(self.dt, self.update)
 
         # start/end points
-        self.p0 = np.array([0., 0., 1.])
+        self.p0 = np.array([0., 0., 0.05])
         self.pf = np.array([4., 4., 2.])
 
         # precompute 5th-order minimal-jerk coefficients
