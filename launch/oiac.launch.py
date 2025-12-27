@@ -25,6 +25,12 @@ def generate_launch_description():
         'rviz_config.rviz'
     )
 
+    rqt_perspective_file = os.path.join(
+        pkg_uav_adaptive_control,
+        'config',
+        'oiac_plot.perspective'
+    )
+
     # 4. Launch Ignition Gazebo (ros_gz_sim)
     gz_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -75,11 +81,21 @@ def generate_launch_description():
         output='screen'
     )
 
+    # 8. RQT Node
+    rqt_node = Node(
+            package='rqt_gui',
+            executable='rqt_gui',
+            name='oiac_dashboard',
+            arguments=['--perspective-file', rqt_perspective_file],
+            output='screen'
+        )
+
     return LaunchDescription([
         gz_sim,
         bridge,
         trajectory_publisher,
         oiac_controller,
         px4_bridge,
-        rviz_node
+        rviz_node,
+        rqt_node
     ])

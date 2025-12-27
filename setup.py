@@ -13,6 +13,7 @@ setup(
         ('share/uav_adaptive_control/launch', ['launch/oiac.launch.py']),
         ('share/uav_adaptive_control/gazebo/QuadcopterTeleop', ['gazebo/QuadcopterTeleop/world.sdf']),
         ('share/uav_adaptive_control/rviz', ['rviz/rviz_config.rviz']),
+        ('share/uav_adaptive_control/config', ['config/oiac_plot.perspective']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
