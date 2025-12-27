@@ -4,6 +4,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import PoseStamped, TwistStamped, Twist, Point, Vector3
 from nav_msgs.msg import Odometry
 import numpy as np
+from rcl_interfaces.msg import SetParametersResult
 
 class OIAC(Node):
     def __init__(self):
@@ -15,10 +16,19 @@ class OIAC(Node):
         self.p_ref = np.zeros(3)
         self.v_ref = np.zeros(3)
 
-        # paper parameters
-        self.beta = 0.6
-        self.a = 2.0
-        self.b = 2.5
+        # 1. Declare Parameters with default values
+        # Default values should be conservative to start
+        self.declare_parameter('beta', 0.6)
+        self.declare_parameter('a', 2.0)
+        self.declare_parameter('b', 2.5)
+
+        # 2. Read initial values into class variables
+        self.a = self.get_parameter('a').value
+        self.b = self.get_parameter('b').value
+        self.beta = self.get_parameter('beta').value
+
+        # 3. Add the callback for real-time updates
+        self.add_on_set_parameters_callback(self.parameters_callback)
 
         # publishers / subscribers
         # self.cmd_pub = self.create_publisher(Twist, "/cmd_acc", 10)
@@ -31,6 +41,34 @@ class OIAC(Node):
 
         self.dt = 0.01
         self.timer = self.create_timer(self.dt, self.update)
+
+    def parameters_callback(self, params):
+        """
+        Callback function triggered whenever a "ros2 param set" command is received.
+        """
+        for param in params:
+            if param.name == 'a':
+                if param.value > 0.0:
+                    self.a = param.value
+                    self.get_logger().info(f"Updated 'a' to: {self.a}")
+                else:
+                    return SetParametersResult(successful=False, reason="Parameter 'a' must be positive")
+            
+            elif param.name == 'b':
+                if param.value >= 0.0:
+                    self.b = param.value
+                    self.get_logger().info(f"Updated 'b' to: {self.b}")
+                else:
+                    return SetParametersResult(successful=False, reason="Parameter 'b' must be non-negative")
+
+            elif param.name == 'beta':
+                if param.value > 0.0:
+                    self.beta = param.value
+                    self.get_logger().info(f"Updated 'beta' to: {self.beta}")
+                else:
+                    return SetParametersResult(successful=False, reason="Parameter 'beta' must be positive")
+
+        return SetParametersResult(successful=True)
 
     def state_odometry(self, msg):
         self.p = np.array([msg.pose.pose.position.x,
